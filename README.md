@@ -18,6 +18,24 @@ npx @askforkris90/website --open
 npx @askforkris90/website --host 0.0.0.0 --port 3000
 ```
 
+## Publishing to npm
+
+To make the package available via `npx @askforkris90/website`:
+
+1. Add your npm token as a repository secret named `NPM_TOKEN` (Settings → Secrets → Actions).
+2. Bump the version in `package.json`, commit, and push a version tag — the included GitHub Actions workflow (`.github/workflows/publish.yml`) will run `npm publish --access public` automatically:
+   ```bash
+   # example: bump to 0.1.0 and publish
+   git tag v0.1.0
+   git push origin v0.1.0
+   ```
+
+Or publish manually from your machine:
+```bash
+npm login
+npm publish --access public
+```
+
 ## Notes
 - `npx @askforkris90/website` serves the bundled `index.html` included in the package — no local files needed.
 - This package ships your static site files and a tiny Node HTTP server.
