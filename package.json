@@ -1,9 +1,10 @@
 {
   "name": "@askforkris90/website",
   "version": "0.1.0",
-  "description": "CLI to serve the askforkris90 website locally",
+  "description": "CLI and desktop app to serve the askforkris90 website locally",
   "license": "MIT",
   "private": false,
+  "main": "electron/main.js",
   "bin": {
     "askforkris90-website": "bin/website.js",
     "website": "bin/website.js"
@@ -12,8 +13,14 @@
     "index.html",
     "CNAME",
     "bin",
+    "electron",
+    "assets",
     "README.md"
   ],
+  "scripts": {
+    "app": "electron .",
+    "dist": "electron-builder"
+  },
   "engines": {
     "node": ">=18"
   },
@@ -21,8 +28,40 @@
     "cli",
     "website",
     "static",
-    "dev-server"
+    "dev-server",
+    "desktop",
+    "electron"
   ],
+  "devDependencies": {
+    "electron": "^41.0.3",
+    "electron-builder": "^26.8.1"
+  },
+  "build": {
+    "appId": "com.askforkris90.website",
+    "productName": "AskForKris90 Website",
+    "files": [
+      "electron/**/*",
+      "assets/**/*",
+      "index.html",
+      "CNAME"
+    ],
+    "icon": "assets/icon.png",
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": [{ "target": "dmg", "arch": ["x64", "arm64"] }]
+    },
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }]
+    },
+    "linux": {
+      "target": [{ "target": "AppImage", "arch": ["x64"] }],
+      "category": "Utility"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/askforkris90/website.git"

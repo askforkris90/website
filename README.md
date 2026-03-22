@@ -1,8 +1,43 @@
 # @askforkris90/website
 
-Run the website locally via `npx`.
+Run the website locally — as a CLI command via `npx`, or as a native **desktop app** with an icon you can double-click.
 
-## Usage
+## Desktop App
+
+The desktop app wraps the website in an [Electron](https://www.electronjs.org/) window with a system-tray icon.
+
+### Run from source
+
+```bash
+git clone https://github.com/askforkris90/website.git
+cd website
+npm install
+npm run app        # opens the desktop window
+```
+
+### Build an installer / executable
+
+```bash
+npm install
+npm run dist       # creates platform installer in dist/
+```
+
+| Platform | Output |
+|----------|--------|
+| Windows  | `dist/AskForKris90 Website Setup *.exe` (NSIS installer) |
+| macOS    | `dist/AskForKris90 Website-*.dmg` |
+| Linux    | `dist/AskForKris90 Website-*.AppImage` |
+
+The **GitHub Actions** workflow (`.github/workflows/desktop.yml`) builds all three platforms automatically when you push a `v*` tag or trigger it manually.
+
+### App icon
+
+The icon lives at `assets/icon.png` (256×256 PNG).  
+Replace it with your own artwork and rebuild to customise the desktop icon.
+
+---
+
+## CLI (npx)
 
 ```bash
 # serve on http://127.0.0.1:3000
