@@ -6,14 +6,22 @@ Run the website locally — as a CLI command via `npx`, or as a native **desktop
 
 The desktop app wraps the website in an [Electron](https://www.electronjs.org/) window with a system-tray icon.
 
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) **18 or later** — verify with `node -v`
+- [Git](https://git-scm.com/downloads)
+
 ### Run from source
 
 ```bash
-git clone https://github.com/askforkris90/website.git
+git clone --branch main https://github.com/askforkris90/website.git
 cd website
 npm install
 npm run app        # opens the desktop window
 ```
+
+> **Windows (Git Bash / PowerShell / cmd):** the same commands work; make sure you `cd` into
+> the `website` folder that was created by `git clone` before running `npm install`.
 
 ### Build an installer / executable
 
