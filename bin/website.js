@@ -60,11 +60,11 @@ if (!Number.isFinite(args.port) || args.port <= 0) {
   process.exit(1);
 }
 
-const root = process.cwd();
+const root = path.join(__dirname, '..');
 const indexPath = path.join(root, 'index.html');
 
 if (!fs.existsSync(indexPath)) {
-  console.error('index.html not found in current directory. Run this command in the repo root (or a folder containing index.html).');
+  console.error('index.html not found. The package may be missing files — try reinstalling.');
   process.exit(1);
 }
 

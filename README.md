@@ -19,5 +19,5 @@ npx @askforkris90/website --host 0.0.0.0 --port 3000
 ```
 
 ## Notes
-- Run the command in a folder that contains an `index.html` (the repo root works).
+- `npx @askforkris90/website` serves the bundled `index.html` included in the package — no local files needed.
 - This package ships your static site files and a tiny Node HTTP server.
