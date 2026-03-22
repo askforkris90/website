@@ -14,7 +14,7 @@ The desktop app wraps the website in an [Electron](https://www.electronjs.org/) 
 ### Run from source
 
 ```bash
-git clone --branch main https://github.com/askforkris90/website.git
+git clone https://github.com/askforkris90/website.git
 cd website
 npm install
 npm run app        # opens the desktop window
@@ -80,6 +80,81 @@ Or publish manually from your machine:
 npm login
 npm publish --access public
 ```
+
+## Troubleshooting
+
+### `npm error enoent Could not read package.json`
+
+You are in the wrong directory, or you cloned the repository and the default branch
+(`main`) does not yet contain a `package.json` (it will once this feature branch is merged).
+
+**Fix:** always `cd` into the `website` folder right after cloning:
+
+```bash
+git clone https://github.com/askforkris90/website.git
+cd website          # <-- do not skip this step
+npm install
+```
+
+If you still see the error, verify you are in the correct directory:
+
+```bash
+# should print package.json
+ls package.json      # macOS / Linux / Git Bash
+dir package.json     # Windows cmd / PowerShell
+```
+
+---
+
+### `Error: Cannot find module 'electron'`
+
+`electron` is a dev-dependency and is only installed when you run a plain `npm install`
+(not `npm install --production`).
+
+**Fix:**
+
+```bash
+npm install          # installs all dependencies including devDependencies
+npm run app
+```
+
+If you have the environment variable `NODE_ENV=production` set, unset it first:
+
+```bash
+# Git Bash / macOS / Linux
+unset NODE_ENV
+npm install
+
+# Windows PowerShell
+Remove-Item Env:\NODE_ENV
+npm install
+
+# Windows cmd
+set NODE_ENV=
+npm install
+```
+
+---
+
+### Connecting your local clone to GitHub (`git remote`)
+
+After cloning, the `origin` remote is already configured automatically.
+Verify it with:
+
+```bash
+git remote -v
+# origin  https://github.com/askforkris90/website.git (fetch)
+# origin  https://github.com/askforkris90/website.git (push)
+```
+
+If you created a local repo manually (not via `git clone`) and need to add the remote:
+
+```bash
+git remote add origin https://github.com/askforkris90/website.git
+git fetch origin
+```
+
+---
 
 ## Notes
 - `npx @askforkris90/website` serves the bundled `index.html` included in the package — no local files needed.
