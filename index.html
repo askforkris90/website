@@ -3,472 +3,682 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AskForKris90 &mdash; Books &amp; Media</title>
+    <title>AskForKris90 &mdash; Books by Generation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --navy:    #0d1b2a;
-            --navy2:   #1b2d42;
-            --gold:    #c9a84c;
-            --gold-lt: #e8d5a3;
-            --cream:   #faf7f2;
-            --text:    #1e1e1e;
-            --muted:   #6b6b6b;
-            --border:  #e0d8cc;
-            --white:   #ffffff;
+            --ink:      #111111;
+            --ink2:     #333333;
+            --muted:    #555555;
+            --rule:     #cccccc;
+            --page:     #ffffff;
+            --offwhite: #f8f7f4;
+            --accent:   #1a1a2e;
+            --gold:     #b5860d;
+            --genx:     #2c4a1e;    /* dark green */
+            --geny:     #1a3a5c;    /* dark blue  */
+            --genz:     #4a1a4a;    /* dark purple */
+            --gen0:     #5c2a00;    /* dark amber  */
         }
 
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--cream);
-            color: var(--text);
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.85rem;
+            background: var(--offwhite);
+            color: var(--ink);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            line-height: 1.65;
         }
 
-        /* ── STICKY NAV ───────────────────────────────────── */
+        /* ══ NAV ════════════════════════════════════════════ */
         nav {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: var(--navy);
+            background: var(--page);
+            border-bottom: 2px solid var(--ink);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.85rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+            padding: 0.6rem 2rem;
         }
         .nav-brand {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.15rem;
-            color: var(--gold-lt);
-            letter-spacing: 0.06em;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--ink);
             text-decoration: none;
+            letter-spacing: 0.03em;
         }
-        .nav-links { display: flex; gap: 1.75rem; }
+        .nav-links { display: flex; gap: 1.5rem; }
         .nav-links a {
-            color: #b0c4de;
+            color: var(--ink2);
             text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 500;
-            letter-spacing: 0.07em;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            transition: color 0.2s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 1px;
+            transition: border-color 0.15s;
         }
-        .nav-links a:hover { color: var(--gold-lt); }
+        .nav-links a:hover { border-color: var(--ink); }
 
-        /* ── HERO ─────────────────────────────────────────── */
+        /* ══ HERO ═══════════════════════════════════════════ */
         .hero {
-            background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 55%, #0d2137 100%);
-            color: var(--gold-lt);
+            background: var(--accent);
+            color: #e8e0d0;
+            padding: 4rem 2rem 3.5rem;
             text-align: center;
-            padding: 5rem 1.5rem 4rem;
-            position: relative;
-            overflow: hidden;
+            border-bottom: 3px solid var(--ink);
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.12) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .hero-eyebrow {
-            font-size: 0.8rem;
-            letter-spacing: 0.2em;
+        .hero-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 1rem;
-            font-family: 'Inter', sans-serif;
+            color: #c8b090;
+            margin-bottom: 0.9rem;
             font-weight: 600;
         }
         .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.4rem, 6vw, 4rem);
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3.4rem);
             line-height: 1.1;
-            letter-spacing: 0.02em;
-            margin-bottom: 1.1rem;
+            color: #f0e8d8;
+            margin-bottom: 1rem;
         }
-        .hero p {
-            font-size: 1.05rem;
-            color: #a8bdd4;
+        .hero-bio {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            font-size: 0.9rem;
+            color: #b0c4de;
+            line-height: 1.8;
+        }
+        .hero-rec {
+            display: inline-block;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(200,176,144,0.4);
+            border-radius: 4px;
+            padding: 0.85rem 1.5rem;
             max-width: 520px;
             margin: 0 auto 2rem;
+            font-style: italic;
+            font-family: 'EB Garamond', serif;
+            font-size: 0.95rem;
+            color: #d4c4a8;
             line-height: 1.7;
+        }
+        .hero-rec cite {
+            display: block;
+            margin-top: 0.5rem;
+            font-style: normal;
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #9aabb8;
         }
         .hero-cta {
             display: inline-block;
-            background: var(--gold);
-            color: var(--navy);
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 0.75rem 2rem;
-            border-radius: 3px;
-            transition: background 0.2s, transform 0.15s;
-        }
-        .hero-cta:hover { background: #dbb85a; transform: translateY(-1px); }
-
-        /* ── MAIN CONTENT ─────────────────────────────────── */
-        main { flex: 1; max-width: 1020px; width: 100%; margin: 3rem auto; padding: 0 1.5rem; }
-        section { margin-bottom: 4rem; }
-
-        .section-header {
-            display: flex;
-            align-items: baseline;
-            gap: 0.75rem;
-            margin-bottom: 1.75rem;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 0.6rem;
-        }
-        .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.7rem;
-            color: var(--navy);
-        }
-        .section-header .tag {
-            font-size: 0.75rem;
-            background: var(--navy);
-            color: var(--gold-lt);
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-        }
-
-        /* ── BOOK CARDS ───────────────────────────────────── */
-        .book-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 1.75rem;
-        }
-        .book-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .book-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
-        .book-card .cover {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(160deg, var(--navy) 0%, #1e3a5f 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-        }
-        .book-card .card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
-        .book-card .genre {
-            font-size: 0.7rem;
+            background: #c8b090;
+            color: var(--accent);
+            font-size: 0.78rem;
             font-weight: 700;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 0.4rem;
-        }
-        .book-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.15rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
-        }
-        .book-card p { font-size: 0.87rem; color: var(--muted); margin-bottom: 1.1rem; flex: 1; line-height: 1.6; }
-        .btn {
-            display: inline-block;
-            background: var(--navy);
-            color: var(--gold-lt);
-            padding: 0.5rem 1.1rem;
-            border-radius: 4px;
             text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            transition: background 0.2s;
-            align-self: flex-start;
+            padding: 0.6rem 1.6rem;
+            border-radius: 2px;
+            transition: background 0.2s, transform 0.15s;
         }
-        .btn:hover { background: var(--navy2); }
+        .hero-cta:hover { background: #dbc8a4; transform: translateY(-1px); }
 
-        /* ── MEDIA LIST ───────────────────────────────────── */
-        .media-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
-        .media-list li {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1rem 1.4rem;
+        /* ══ MAIN ═══════════════════════════════════════════ */
+        main { flex: 1; max-width: 1040px; width: 100%; margin: 2.5rem auto; padding: 0 1.5rem; }
+        section { margin-bottom: 3.5rem; }
+
+        .sec-head {
             display: flex;
-            align-items: center;
-            gap: 1.1rem;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
-            transition: box-shadow 0.2s;
+            align-items: baseline;
+            gap: 0.75rem;
+            border-bottom: 2px solid var(--ink);
+            padding-bottom: 0.4rem;
+            margin-bottom: 1.5rem;
         }
-        .media-list li:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
-        .media-list .icon {
-            font-size: 1.8rem;
-            width: 2.6rem;
-            text-align: center;
+        .sec-head h2 {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.45rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .sec-badge {
+            font-size: 0.67rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.15rem 0.55rem;
+            border-radius: 2px;
+            border: 1px solid currentColor;
             flex-shrink: 0;
         }
-        .media-list .info { flex: 1; }
-        .media-list .info strong { display: block; font-size: 1rem; font-weight: 600; }
-        .media-list .info span  { font-size: 0.84rem; color: var(--muted); }
-        .badge {
+
+        /* ══ ERA TABS ════════════════════════════════════════ */
+        .era-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.75rem;
+        }
+        .era-tab {
             font-size: 0.72rem;
             font-weight: 700;
-            letter-spacing: 0.07em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            padding: 0.22rem 0.6rem;
-            border-radius: 20px;
-            background: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffc107;
+            padding: 0.3rem 0.85rem;
+            border-radius: 2px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            background: var(--page);
+            color: var(--ink2);
+            border-color: var(--rule);
+            transition: all 0.15s;
         }
-        .badge.live { background: #d4edda; color: #155724; border-color: #28a745; }
+        .era-tab:hover, .era-tab.active { color: var(--page); border-color: transparent; }
+        .era-tab[data-era="all"].active          { background: var(--ink); }
+        .era-tab[data-era="genx"].active         { background: var(--genx); }
+        .era-tab[data-era="geny"].active         { background: var(--geny); }
+        .era-tab[data-era="genz"].active         { background: var(--genz); }
+        .era-tab[data-era="gen0"].active         { background: var(--gen0); }
+        .era-tab[data-era="genx"]:hover:not(.active) { background: var(--genx); color: #fff; }
+        .era-tab[data-era="geny"]:hover:not(.active) { background: var(--geny); color: #fff; }
+        .era-tab[data-era="genz"]:hover:not(.active) { background: var(--genz); color: #fff; }
+        .era-tab[data-era="gen0"]:hover:not(.active) { background: var(--gen0); color: #fff; }
+        .era-tab[data-era="all"]:hover:not(.active)  { background: var(--ink); color: #fff; }
 
-        /* ── ABOUT ────────────────────────────────────────── */
-        .about-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 2rem;
-            display: flex;
-            gap: 2rem;
-            align-items: flex-start;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        .book-group { display: none; }
+        .book-group.visible { display: block; }
+
+        .era-heading {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            padding: 0.3rem 0.7rem;
+            display: inline-block;
+            border-radius: 2px;
+            color: var(--page);
         }
-        .about-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--navy), #1e3a5f);
+        .era-heading.genx { background: var(--genx); }
+        .era-heading.geny { background: var(--geny); }
+        .era-heading.genz { background: var(--genz); }
+        .era-heading.gen0 { background: var(--gen0); }
+
+        /* ══ BOOK GRID ══════════════════════════════════════ */
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .book-card {
+            background: var(--page);
+            border: 1px solid var(--rule);
+            border-top-width: 3px;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .book-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+        .book-card.genx { border-top-color: var(--genx); }
+        .book-card.geny { border-top-color: var(--geny); }
+        .book-card.genz { border-top-color: var(--genz); }
+        .book-card.gen0 { border-top-color: var(--gen0); }
+
+        .book-cover {
+            width: 100%;
+            height: 175px;
+            background: var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
+            font-size: 3rem;
+            border-bottom: 1px solid var(--rule);
+        }
+        .book-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; }
+        .book-era {
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+        .book-era.genx { color: var(--genx); }
+        .book-era.geny { color: var(--geny); }
+        .book-era.genz { color: var(--genz); }
+        .book-era.gen0 { color: var(--gen0); }
+
+        .book-card h3 {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.4rem;
+            line-height: 1.25;
+        }
+        .book-card p {
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.65;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+        .book-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .btn {
+            display: inline-block;
+            font-size: 0.73rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.38rem 0.85rem;
+            border-radius: 2px;
+            border: 1px solid var(--ink);
+            color: var(--ink);
+            background: var(--page);
+            transition: background 0.15s, color 0.15s;
+            cursor: pointer;
+        }
+        .btn:hover { background: var(--ink); color: var(--page); }
+        .btn.primary { background: var(--ink); color: var(--page); }
+        .btn.primary:hover { background: #333; }
+
+        /* ══ MEDIA / COMING SOON ════════════════════════════ */
+        .media-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+        .media-list li {
+            background: var(--page);
+            border: 1px solid var(--rule);
+            padding: 0.85rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: box-shadow 0.15s;
+        }
+        .media-list li:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
+        .media-icon { font-size: 1.5rem; width: 2.2rem; text-align: center; flex-shrink: 0; }
+        .media-info { flex: 1; }
+        .media-info strong { display: block; font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+        .media-info span  { font-size: 0.76rem; color: var(--muted); }
+        .cs-badge {
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.55rem;
+            border-radius: 2px;
             flex-shrink: 0;
         }
-        .about-text h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            margin-bottom: 0.6rem;
-        }
-        .about-text p { font-size: 0.93rem; color: var(--muted); line-height: 1.75; }
+        .cs-badge.soon   { background: #fff3cd; color: #7a5900; border: 1px solid #e0a000; }
+        .cs-badge.live   { background: #d4edda; color: #155724; border: 1px solid #28a745; }
+        .cs-badge.rec    { background: #e8d0f0; color: #4a1a4a; border: 1px solid #9a4aaa; }
 
-        /* ── NEWSLETTER ───────────────────────────────────── */
-        .newsletter {
-            background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%);
-            border-radius: 10px;
-            padding: 2.5rem 2rem;
-            text-align: center;
-            color: var(--gold-lt);
+        /* ══ ABOUT ══════════════════════════════════════════ */
+        .about-wrap {
+            background: var(--page);
+            border: 1px solid var(--rule);
+            border-top: 3px solid var(--ink);
+            padding: 1.75rem;
+            display: flex;
+            gap: 1.75rem;
+            align-items: flex-start;
         }
-        .newsletter h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+        .about-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            border: 2px solid var(--rule);
+        }
+        .about-copy h3 {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--ink);
             margin-bottom: 0.5rem;
         }
-        .newsletter p { color: #a8bdd4; font-size: 0.93rem; margin-bottom: 1.5rem; }
-        .newsletter-form {
-            display: flex;
-            justify-content: center;
-            gap: 0.6rem;
-            flex-wrap: wrap;
+        .about-copy p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 0.6rem;
         }
-        .newsletter-form input[type="email"] {
-            padding: 0.65rem 1.1rem;
+        .about-copy p:last-child { margin-bottom: 0; }
+
+        /* ══ NEWSLETTER ═════════════════════════════════════ */
+        .newsletter-wrap {
+            background: var(--accent);
+            border: 1px solid var(--ink);
+            padding: 2.25rem 2rem;
+            text-align: center;
+        }
+        .newsletter-wrap h2 {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.5rem;
+            color: #f0e8d8;
+            margin-bottom: 0.4rem;
+        }
+        .newsletter-wrap p { font-size: 0.82rem; color: #a8bdd4; margin-bottom: 1.4rem; }
+        .nl-form { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
+        .nl-form input[type="email"] {
+            padding: 0.55rem 1rem;
             border: 1px solid #3a5a7a;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.07);
             color: #fff;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            min-width: 240px;
+            font-size: 0.82rem;
+            border-radius: 2px;
+            min-width: 220px;
             outline: none;
-            transition: border-color 0.2s;
+            font-family: inherit;
         }
-        .newsletter-form input[type="email"]::placeholder { color: #7899b5; }
-        .newsletter-form input[type="email"]:focus { border-color: var(--gold); }
-        .newsletter-form button {
-            padding: 0.65rem 1.4rem;
-            background: var(--gold);
-            color: var(--navy);
+        .nl-form input[type="email"]::placeholder { color: #6a8fa8; }
+        .nl-form input[type="email"]:focus { border-color: #c8b090; }
+        .nl-form button {
+            padding: 0.55rem 1.25rem;
+            background: #c8b090;
+            color: var(--accent);
             border: none;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            border-radius: 2px;
+            font-size: 0.78rem;
             font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
             cursor: pointer;
+            font-family: inherit;
             transition: background 0.2s;
         }
-        .newsletter-form button:hover { background: #dbb85a; }
+        .nl-form button:hover { background: #dbc8a4; }
 
-        /* ── FOOTER ───────────────────────────────────────── */
+        /* ══ FOOTER ═════════════════════════════════════════ */
         footer {
-            background: var(--navy);
-            color: #7899b5;
+            background: var(--ink);
+            color: #888;
             text-align: center;
-            padding: 1.75rem 1.5rem;
-            font-size: 0.88rem;
+            padding: 1.5rem;
+            font-size: 0.77rem;
+            border-top: 2px solid #333;
         }
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 1.4rem;
-            margin-bottom: 0.9rem;
-        }
-        .footer-social a {
-            color: #a8bdd4;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        .footer-social a:hover { color: var(--gold-lt); }
-        footer small { display: block; margin-top: 0.4rem; color: #496070; }
+        .foot-links { display: flex; justify-content: center; gap: 1.25rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+        .foot-links a { color: #aaa; text-decoration: none; transition: color 0.15s; }
+        .foot-links a:hover { color: #e8e0d0; }
+        footer small { display: block; margin-top: 0.35rem; color: #555; }
 
-        /* ── RESPONSIVE ───────────────────────────────────── */
-        @media (max-width: 600px) {
-            .nav-links { gap: 1rem; }
-            .about-card { flex-direction: column; align-items: center; text-align: center; }
-            .newsletter-form input[type="email"] { min-width: 100%; }
+        /* ══ RESPONSIVE ═════════════════════════════════════ */
+        @media (max-width: 640px) {
+            .nav-links { gap: 0.85rem; }
+            .about-wrap { flex-direction: column; align-items: center; text-align: center; }
+            .nl-form input[type="email"] { min-width: 100%; }
+            .era-tabs { gap: 0.4rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- STICKY NAV -->
-    <nav>
-        <a class="nav-brand" href="#">AskForKris90</a>
-        <div class="nav-links">
-            <a href="#books">Books</a>
-            <a href="#media">Media</a>
-            <a href="#about">About</a>
-            <a href="#newsletter">Newsletter</a>
+<!-- ══ STICKY NAV ══════════════════════════════════════════ -->
+<nav>
+    <a class="nav-brand" href="#">📚 AskForKris90</a>
+    <div class="nav-links">
+        <a href="#books">Books</a>
+        <a href="#media">Media</a>
+        <a href="#about">About</a>
+        <a href="#newsletter">Newsletter</a>
+    </div>
+</nav>
+
+<!-- ══ HERO ════════════════════════════════════════════════ -->
+<header class="hero">
+    <p class="hero-label">✍️ langysitemedia.io &nbsp;·&nbsp; Independent Author</p>
+    <h1>Stories Across<br>Every Generation</h1>
+    <p class="hero-bio">
+        I'm <strong>AskForKris90</strong> &mdash; a self-published author writing fiction, drama and life-inspired
+        narratives that speak to every era. From the gritty realism of the Gen X years to the digital hustle
+        of Gen Z, my books find the universal in the generational. 📖 All titles are free to download.
+    </p>
+    <blockquote class="hero-rec">
+        &ldquo;AskForKris90 writes with the kind of raw honesty that cuts through the noise of every decade.
+        If you grew up with a walkman, a flip phone, or a TikTok account &mdash; there's a story here for you.&rdquo;
+        <cite>— Editorial Recommendation, langysitemedia.io 🌟</cite>
+    </blockquote>
+    <a class="hero-cta" href="#books">Browse All Books ↓</a>
+</header>
+
+<!-- ══ MAIN ═════════════════════════════════════════════════ -->
+<main>
+
+    <!-- BOOKS BY ERA -->
+    <section id="books">
+        <div class="sec-head">
+            <h2>📚 Books by Generation Era</h2>
+            <span class="sec-badge" style="color:#555;border-color:#aaa;">Filter by era</span>
         </div>
-    </nav>
 
-    <!-- HERO -->
-    <header class="hero">
-        <p class="hero-eyebrow">langysitemedia.io</p>
-        <h1>Stories Worth<br>Reading</h1>
-        <p>Discover books, audiobooks, and media from AskForKris90 &mdash; one chapter at a time.</p>
-        <a class="hero-cta" href="#books">Browse Books</a>
-    </header>
+        <div class="era-tabs" role="tablist">
+            <button class="era-tab active" data-era="all"  role="tab">📖 All Eras</button>
+            <button class="era-tab"        data-era="genx" role="tab">🤘 Gen X &mdash; 80s / 90s</button>
+            <button class="era-tab"        data-era="geny" role="tab">💿 Gen Y &mdash; Y2K / 2000s</button>
+            <button class="era-tab"        data-era="genz" role="tab">📱 Gen Z &mdash; 2010s+</button>
+            <button class="era-tab"        data-era="gen0" role="tab">🌐 2000s Era</button>
+        </div>
 
-    <main>
-
-        <!-- BOOKS -->
-        <section id="books">
-            <div class="section-header">
-                <h2>Books</h2>
-                <span class="tag">Available Now</span>
-            </div>
+        <!-- GEN X -->
+        <div class="book-group visible" data-group="genx">
+            <div class="era-heading genx">🤘 Gen X &mdash; Born 1965–1980 &nbsp;·&nbsp; The Analogue Rebels</div>
             <div class="book-grid">
-
-                <div class="book-card">
-                    <div class="cover">&#128214;</div>
-                    <div class="card-body">
-                        <span class="genre">Fiction</span>
-                        <h3>3001</h3>
-                        <p>A compelling journey through time and consequence &mdash; available now as a free eBook.</p>
-                        <a class="btn" href="books/3001.epub">&#11015;&#65039; Download .epub</a>
+                <!-- book placeholder for Gen X -->
+                <div class="book-card genx">
+                    <div class="book-cover">📼</div>
+                    <div class="book-body">
+                        <span class="book-era genx">🤘 Gen X Era</span>
+                        <h3>Hello, Friend</h3>
+                        <p>A story about connection before the internet existed — two people, mixtapes, and the courage to say hello. Raw, analogue, and deeply human. 📼</p>
+                        <div class="book-actions">
+                            <a class="btn primary" href="https://github.com/askforkris90/hello--friend" target="_blank" rel="noopener">📖 View on GitHub</a>
+                            <a class="btn" href="https://github.com/askforkris90/hello--friend/archive/refs/heads/main.zip">⬇️ Download ZIP</a>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Add more book cards here -->
-
             </div>
-        </section>
-
-        <!-- MEDIA -->
-        <section id="media">
-            <div class="section-header">
-                <h2>Media</h2>
-                <span class="tag">Coming Soon</span>
-            </div>
-            <ul class="media-list">
-                <li>
-                    <span class="icon">&#127925;</span>
-                    <div class="info">
-                        <strong>Audiobook &mdash; 3001</strong>
-                        <span>Full narration currently in production</span>
-                    </div>
-                    <span class="badge">Coming Soon</span>
-                </li>
-                <li>
-                    <span class="icon">&#127916;</span>
-                    <div class="info">
-                        <strong>Book Trailer</strong>
-                        <span>Official video reveal</span>
-                    </div>
-                    <span class="badge">Coming Soon</span>
-                </li>
-                <li>
-                    <span class="icon">&#127897;&#65039;</span>
-                    <div class="info">
-                        <strong>Podcast Interview</strong>
-                        <span>Behind-the-book Q&amp;A with the author</span>
-                    </div>
-                    <span class="badge">Coming Soon</span>
-                </li>
-            </ul>
-        </section>
-
-        <!-- ABOUT -->
-        <section id="about">
-            <div class="section-header">
-                <h2>About</h2>
-            </div>
-            <div class="about-card">
-                <div class="about-avatar">&#9997;&#65039;</div>
-                <div class="about-text">
-                    <h3>AskForKris90</h3>
-                    <p>
-                        Welcome to the official home of AskForKris90's books and media.
-                        This site is built to bring stories directly to readers &mdash; no paywalls, no barriers.
-                        All books are available as free eBook downloads.
-                        More titles, audiobooks, and multimedia content are on the way.
-                        Stay connected via the newsletter below.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEWSLETTER -->
-        <section id="newsletter">
-            <div class="newsletter">
-                <h2>Stay in the Loop</h2>
-                <p>Get notified when new books and media drop. No spam, ever.</p>
-                <form class="newsletter-form" onsubmit="return false;">
-                    <input type="email" placeholder="your@email.com" aria-label="Email address">
-                    <button type="submit">Notify Me</button>
-                </form>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="footer-social">
-            <a href="#">&#128279; langysitemedia.io</a>
-            <a href="#">&#120143; X / Twitter</a>
-            <a href="#">&#128248; Instagram</a>
-            <a href="#">&#127381; YouTube</a>
         </div>
-        <p>&copy; 2026 AskForKris90 &mdash; All rights reserved.</p>
-        <small>Hosted on GitHub Pages &middot; langysitemedia.io</small>
-    </footer>
+
+        <!-- GEN Y -->
+        <div class="book-group visible" data-group="geny">
+            <div class="era-heading geny">💿 Gen Y / Millennials &mdash; Born 1981–1996 &nbsp;·&nbsp; The Digital Pioneers</div>
+            <div class="book-grid">
+                <div class="book-card geny">
+                    <div class="book-cover">📀</div>
+                    <div class="book-body">
+                        <span class="book-era geny">💿 Gen Y Era</span>
+                        <h3>3001</h3>
+                        <p>A compelling journey through time, consequence, and the weight of choices made in a world changing faster than we can keep up with. Written for the generation that lived through Y2K, 9/11, and the rise of social media. 💿</p>
+                        <div class="book-actions">
+                            <a class="btn primary" href="books/3001.epub">📖 Download .epub</a>
+                            <a class="btn" href="https://github.com/askforkris90/website/archive/refs/heads/main.zip">⬇️ Download ZIP</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GEN Z -->
+        <div class="book-group visible" data-group="genz">
+            <div class="era-heading genz">📱 Gen Z &mdash; Born 1997–2012 &nbsp;·&nbsp; The Always-Online Generation</div>
+            <div class="book-grid">
+                <div class="book-card genz">
+                    <div class="book-cover">🛸</div>
+                    <div class="book-body">
+                        <span class="book-era genz">📱 Gen Z Era</span>
+                        <h3>ZKash Air</h3>
+                        <p>Fast, digital, and unapologetically now. A story that lives at the intersection of hustle culture, crypto dreams, and the relentless pressure to be seen. For the generation that grew up on streams and stories. ✨</p>
+                        <div class="book-actions">
+                            <a class="btn primary" href="https://github.com/askforkris90/ZKash-Air" target="_blank" rel="noopener">📖 View on GitHub</a>
+                            <a class="btn" href="https://github.com/askforkris90/ZKash-Air/archive/refs/heads/main.zip">⬇️ Download ZIP</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2000s ERA -->
+        <div class="book-group visible" data-group="gen0">
+            <div class="era-heading gen0">🌐 2000s Era &mdash; The Decade of Big Changes</div>
+            <div class="book-grid">
+                <div class="book-card gen0">
+                    <div class="book-cover">📟</div>
+                    <div class="book-body">
+                        <span class="book-era gen0">🌐 2000s Era</span>
+                        <h3>Banking at Home</h3>
+                        <p>The 2000s changed how we handled money, trust, and the idea of security. An intimate story about one family navigating the crash, the boom, and everything in between. 🏦</p>
+                        <div class="book-actions">
+                            <a class="btn primary" href="https://github.com/askforkris90/pythonProject3" target="_blank" rel="noopener">📖 View on GitHub</a>
+                            <a class="btn" href="https://github.com/askforkris90/pythonProject3/archive/refs/heads/main.zip">⬇️ Download ZIP</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- MEDIA / COMING SOON -->
+    <section id="media">
+        <div class="sec-head">
+            <h2>🎬 Media &amp; Coming Soon</h2>
+        </div>
+        <ul class="media-list">
+            <li>
+                <span class="media-icon">🎧</span>
+                <div class="media-info">
+                    <strong>Audiobook &mdash; 3001</strong>
+                    <span>Full narration currently in production 🎙️</span>
+                </div>
+                <span class="cs-badge soon">⏳ Coming Soon</span>
+            </li>
+            <li>
+                <span class="media-icon">🎞️</span>
+                <div class="media-info">
+                    <strong>Book Trailer &mdash; 3001</strong>
+                    <span>Official cinematic reveal — dropping soon 🎬</span>
+                </div>
+                <span class="cs-badge soon">⏳ Coming Soon</span>
+            </li>
+            <li>
+                <span class="media-icon">🎙️</span>
+                <div class="media-info">
+                    <strong>Podcast Interview</strong>
+                    <span>Behind-the-book Q&amp;A with AskForKris90 — the writing process, the eras, the stories 🎤</span>
+                </div>
+                <span class="cs-badge rec">🎙️ Recording</span>
+            </li>
+            <li>
+                <span class="media-icon">🌐</span>
+                <div class="media-info">
+                    <strong>ZKash Air &mdash; Web Experience</strong>
+                    <span>Interactive companion site for the Gen Z novel 📱</span>
+                </div>
+                <span class="cs-badge soon">⏳ Coming Soon</span>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="sec-head">
+            <h2>✍️ About the Author</h2>
+        </div>
+        <div class="about-wrap">
+            <div class="about-avatar">🖊️</div>
+            <div class="about-copy">
+                <h3>AskForKris90</h3>
+                <p>
+                    👋 I'm an independent author and self-publisher at <strong>langysitemedia.io</strong>.
+                    I write stories that capture the feel of real eras — not just dates and events, but the
+                    <em>texture</em> of life in each generation. The music, the money worries, the technology,
+                    the relationships. Every book I write is anchored in a specific generational experience
+                    while reaching for something universal. 📚
+                </p>
+                <p>
+                    All my books are published free of charge directly from GitHub. No gatekeepers,
+                    no publishing houses, no barriers. If a story resonates with you, share it. That's
+                    all I ask. 🙏
+                </p>
+                <p>
+                    💡 <strong>Recommended read for first-timers:</strong> Start with <em>3001</em> if you're
+                    a Millennial, or <em>Hello, Friend</em> if the analogue era calls to you.
+                    Gen Z readers — <em>ZKash Air</em> is waiting. 🚀
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter">
+        <div class="newsletter-wrap">
+            <h2>📬 Stay in the Loop</h2>
+            <p>New books, media drops, and generation-era essays &mdash; straight to your inbox. No spam, ever. ✉️</p>
+            <form class="nl-form" onsubmit="return false;">
+                <input type="email" placeholder="your@email.com" aria-label="Email address">
+                <button type="submit">Notify Me 🔔</button>
+            </form>
+        </div>
+    </section>
+
+</main>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════ -->
+<footer>
+    <div class="foot-links">
+        <a href="https://langysitemedia.io">🌐 langysitemedia.io</a>
+        <a href="https://github.com/askforkris90" target="_blank" rel="noopener">🐙 GitHub</a>
+        <a href="#">𝕏 Twitter</a>
+        <a href="#">📸 Instagram</a>
+        <a href="#">▶️ YouTube</a>
+    </div>
+    <p>&copy; 2026 AskForKris90 &mdash; All rights reserved.</p>
+    <small>Hosted on GitHub Pages &middot; langysitemedia.io</small>
+</footer>
+
+<!-- ══ ERA FILTER SCRIPT ══════════════════════════════════════ -->
+<script>
+    const tabs   = document.querySelectorAll('.era-tab');
+    const groups = document.querySelectorAll('.book-group');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const era = tab.dataset.era;
+            groups.forEach(g => {
+                if (era === 'all' || g.dataset.group === era) {
+                    g.classList.add('visible');
+                } else {
+                    g.classList.remove('visible');
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
